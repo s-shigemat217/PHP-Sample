@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="add.php" method="post">
+        <p>
+            <label for="title">タイトル（必須・200文字まで）</label>
+            <input type="text" name="title">
+        </p>
+        <p>
+            <label for="isbn">ISBNコード（必須・13桁）</label>
+            <input type="text" name="isbn">
+        </p>
+        <p>
+            <label for="price">定価（必須・半角数字6桁）</label>
+            <input type="text" name="price">
+        </p>
+        <p>
+            <label for="publish">出版日（必須・YYYY-MM-DD形式）</label>
+            <input type="date" name="publish">
+        </p>
+        <p>
+            <label for="author">著者名（必須・80文字まで）</label>
+            <input type="text" name="author">
+        </p>
+        <p class="button">
+            <input type="submit" value="送信する">
+        </p>
+
+    </form>
+</body>
+
+</html>
