@@ -1,26 +1,50 @@
-<?php
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>書籍データベース</h1>
+    <?php
     require_once 'functions.php';
     try{
-        $user = "phpuser";
-        $password = "y*1wk)YPJ-(UdAnx";
-        $opt = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_EMULATE_PREPARES => false,
-            PDO::MYSQL_ATTR_MULTI_STATEMENTS => false,
-        ];
-        $dbh = new PDO('mysql:host=localhost;dbname=sample_db', $user, $password, $opt);
-        // var_dump($dbh);
-        $sql = "SELECT title,author FROM books";
+        $dbh = db_open();
+        $sql = "SELECT id,title,isbn,price,publish,author FROM books";
         $statement = $dbh->query($sql);
 
-        while ($row = $statement->fetch()){
-            echo "書籍名：" . str2html($row[0]) . "<br>";
-            echo "著者" . str2html($row[1]) . "<br><br>";
-        }
+    ?>
+    <table>
+        <tr>
+            <th>更新</th>
+            <th>書籍名</th>
+            <th>ISBN</th>
+            <th>価格</th>
+            <th>出版日</th>
+            <th>著者</th>
+        </tr>
+        <?php while ($row = $statement->fetch()):?>
+        <tr>
+            <td><a href="edit.php?id=<?= str2html($row['id']) ?>">更新</a></td>
+            <td><?= str2html($row['title']) ?></td>
+            <td><?= str2html($row['isbn']) ?></td>
+            <td><?= str2html($row['price']) ?></td>
+            <td><?= str2html($row['publish']) ?></td>
+            <td><?= str2html($row['author']) ?></td>
+        </tr>
+        <?php endwhile; ?>
+    </table>
+    <?php
     }catch (PDOException $e){
         echo 'Connection failed: ' . $e->getMessage() . "\n";
         exit;
     }
-
-    
 ?>
+    
+</body>
+</html>
+
+
+

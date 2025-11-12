@@ -47,14 +47,7 @@
 
     // DB insert
     try{
-        $user = "phpuser";
-        $password = "y*1wk)YPJ-(UdAnx";
-        $opt = [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_EMULATE_PREPARES => false,
-            PDO::MYSQL_ATTR_MULTI_STATEMENTS => false,
-        ];
-        $dbh = new PDO('mysql:host=localhost;dbname=sample_db', $user, $password, $opt);
+        $dbh = db_open();
         $sql = "INSERT INTO books (id,title,isbn,price,publish,author) VALUES (NULL, :title, :isbn,:price,:publish, :author)";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(':title', $_POST['title'], PDO::PARAM_STR);
