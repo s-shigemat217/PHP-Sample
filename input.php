@@ -1,13 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body>
+<?php
+    require_once __DIR__ . '/inc/functions.php';
+    
+    $html_form = <<<EOD
     <form action="add.php" method="post">
         <p>
             <label for="title">書籍名（必須・200文字まで）</label>
@@ -32,8 +26,8 @@
         <p class="button">
             <input type="submit" value="送信する">
         </p>
-
     </form>
-</body>
-
-</html>
+    EOD;
+    require_once __DIR__ . '/inc/header.php';
+    echo $html_form;
+    require_once __DIR__ . '/inc/footer.php';
