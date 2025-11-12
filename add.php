@@ -3,12 +3,12 @@
 
     // varidation
     if(empty($_POST['title'])){
-        echo 'タイトルが未入力です。<br>';
+        echo '書籍名が未入力です。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
     }
     if(!preg_match('/\A[[:^cntrl:]]{1,200}\z/u', $_POST['title'])){
-        echo 'タイトルは200文字までです。<br>';
+        echo '書籍名は200文字までです。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
     }
@@ -39,7 +39,7 @@
         exit;
     }
     if(!preg_match('/\A[[:^cntrl:]]{1,80}\z/u', $_POST['author'])){
-        echo 'タイトルは200文字までです。<br>';
+        echo '書籍名は200文字までです。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
     }
