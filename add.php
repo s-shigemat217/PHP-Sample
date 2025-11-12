@@ -17,17 +17,17 @@
         echo '<a href="add.html">戻る</a>';
         exit;
     }
-    if(!preg_match('/\A\d{0,6}\z/u', $_POST['isbn'])){
+    if(!preg_match('/\A\d{0,6}\z/u', $_POST['price'])){
         echo '価格は数字6桁までです。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
     }
-    if(empty($_POST['date'])){
+    if(empty($_POST['publish'])){
         echo '日付が未入力です。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
     }
-    if(!preg_match('/\A\d{4}-\d{1,2}-\d{1,2}\z/u', $_POST['isbn'])){
+    if(!preg_match('/\A\d{4}-\d{1,2}-\d{1,2}\z/u', $_POST['publish'])){
         echo '日付のフォーマットが違います。<br>';
         echo '<a href="add.html">戻る</a>';
         exit;
@@ -57,11 +57,11 @@
         $dbh = new PDO('mysql:host=localhost;dbname=sample_db', $user, $password, $opt);
         $sql = "INSERT INTO books (id,title,isbn,price,publish,author) VALUES (NULL, :title, :isbn,:price,:publish, :author)";
         $stmt = $dbh->prepare($sql);
-        $stmt->bindParam(':title', $_POST['title'], PDO::PARAM_STR);
-        $stmt->bindParam(':isbn', $_POST['isbn'], PDO::PARAM_STR);
-        $stmt->bindParam(':price', $_POST['price'], PDO::PARAM_INT);
-        $stmt->bindParam(':publish', $_POST['publish'], PDO::PARAM_STR);
-        $stmt->bindParam(':author', $_POST['author'], PDO::PARAM_STR);
+        $stmt->bindValue(':title', $_POST['title'], PDO::PARAM_STR);
+        $stmt->bindValue(':isbn', $_POST['isbn'], PDO::PARAM_STR);
+        $stmt->bindValue(':price', $_POST['price'], PDO::PARAM_INT);
+        $stmt->bindValue(':publish', $_POST['publish'], PDO::PARAM_STR);
+        $stmt->bindValue(':author', $_POST['author'], PDO::PARAM_STR);
         $stmt->execute();
         echo 'データを追加しました。<br>';
         echo '<a href="list.php">書籍一覧へ戻る</a>';
