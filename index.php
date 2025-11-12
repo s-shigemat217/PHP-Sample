@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1>書籍データベース</h1>
-    <?php
-    require_once 'functions.php';
+<?php
+
+    // ヘッダー読み込み
+    require_once __DIR__ . '/inc/header.php';
+
+    // DB接続とデータ取得
+    require_once __DIR__ . '/inc/functions.php';
+
+    // DB select
     try{
         $dbh = db_open();
         $sql = "SELECT id,title,isbn,price,publish,author FROM books";
@@ -41,10 +38,6 @@
         echo 'Connection failed: ' . $e->getMessage() . "\n";
         exit;
     }
-?>
-    
-</body>
-</html>
 
-
-
+    // フッター読み込み
+    require_once __DIR__ . '/inc/footer.php';

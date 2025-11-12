@@ -1,49 +1,7 @@
 <?php
-    require_once 'functions.php';
-
-    // varidation
-    if(empty($_POST['title'])){
-        echo '書籍名が未入力です。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(!preg_match('/\A[[:^cntrl:]]{1,200}\z/u', $_POST['title'])){
-        echo '書籍名は200文字までです。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(!preg_match('/\A\d{0,13}\z/u', $_POST['isbn'])){
-        echo 'ISBNは数字13桁までです。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(!preg_match('/\A\d{0,6}\z/u', $_POST['price'])){
-        echo '価格は数字6桁までです。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(empty($_POST['publish'])){
-        echo '日付が未入力です。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(!preg_match('/\A\d{4}-\d{1,2}-\d{1,2}\z/u', $_POST['publish'])){
-        echo '日付のフォーマットが違います。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    $date = explode('-', $_POST['publish']);
-    if(!checkdate($date[1], $date[2], $date[0])){
-        echo '正しい日付を入力してください。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    if(!preg_match('/\A[[:^cntrl:]]{1,80}\z/u', $_POST['author'])){
-        echo '書籍名は200文字までです。<br>';
-        echo '<a href="add.html">戻る</a>';
-        exit;
-    }
-    
+    require_once __DIR__ . '/inc/functions.php';
+    require_once __DIR__ . '/inc/error_check.php';
+    require_once __DIR__ . '/inc/header.php';
 
     // DB insert
     try{
@@ -57,7 +15,7 @@
         $stmt->bindValue(':author', $_POST['author'], PDO::PARAM_STR);
         $stmt->execute();
         echo 'データを追加しました。<br>';
-        echo '<a href="list.php">書籍一覧へ戻る</a>';
+        echo '<a href="index.php">書籍一覧へ戻る</a>';
     }catch (PDOException $e){
         echo 'Connection failed: ' . $e->getMessage() . "\n";
         exit;

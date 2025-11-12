@@ -1,9 +1,9 @@
 <?php
-    require_once 'functions.php';
+    require_once __DIR__ . '/inc/functions.php';
     // validation
     if(empty($_GET['id'])){
         echo 'IDを指定してください。<br>';
-        echo '<a href="list.php">書籍一覧へ戻る</a>';
+        echo '<a href="index.php">書籍一覧へ戻る</a>';
         exit;
     }
     if(!preg_match('/\A\d{1,11}+\z/u', $_GET['id'])){
@@ -22,7 +22,7 @@
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
     if(!$result){
         echo '該当するデータがありません。<br>';
-        echo '<a href="list.php">書籍一覧へ戻る</a>';
+        echo '<a href="index.php">書籍一覧へ戻る</a>';
         exit;
     }
     // var_dump($result);
@@ -63,4 +63,6 @@
         </p>
     </form>
     EOD;
+    require_once __DIR__ . '/inc/header.php';
     echo $html_form;
+    require_once __DIR__ . '/inc/footer.php';
