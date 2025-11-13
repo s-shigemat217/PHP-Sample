@@ -1,5 +1,6 @@
 <?php
     require_once __DIR__ . '/inc/functions.php';
+    require_once __DIR__ . '/inc/header.php';
     
     $html_form = <<<EOD
     <form action="add.php" method="post">
@@ -28,6 +29,6 @@
         </p>
     </form>
     EOD;
-    require_once __DIR__ . '/inc/header.php';
+    
     echo $html_form;
     require_once __DIR__ . '/inc/footer.php';
