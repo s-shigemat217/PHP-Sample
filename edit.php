@@ -1,4 +1,6 @@
 <?php
+    require_once __DIR__ . '/login_check.php';
+
     require_once __DIR__ . '/inc/functions.php';
     // validation
     if(empty($_GET['id'])){

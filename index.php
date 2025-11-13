@@ -1,4 +1,5 @@
 <?php
+    require_once __DIR__ . '/login_check.php';
 
     // ヘッダー読み込み
     require_once __DIR__ . '/inc/header.php';
